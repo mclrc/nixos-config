@@ -7,7 +7,7 @@
 
   # Copy the Waybar configuration folder to ~/.config/waybar
   xdg.configFile."waybar" = {
-    source = ./waybar-config/; # Path to your Waybar config folder
+    source = ./waybar-config; # Path to your Waybar config folder
     recursive = true;         # Ensure all files in the folder are copied
   };
 }
