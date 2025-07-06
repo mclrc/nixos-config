@@ -42,9 +42,6 @@
 
         # Modules are where you define your system settings
         modules = [
-          # Import your main system configuration
-          ./hyprland.nix
-
           # Import Home Manager's NixOS module
           home-manager.nixosModules.default
           {
