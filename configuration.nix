@@ -53,7 +53,7 @@
   users.users.moritz = {
     isNormalUser = true;
     description = "Moritz";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" ];
     packages = with pkgs; [];
   };
 
