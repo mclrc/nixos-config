@@ -2,8 +2,8 @@
 
 {
   # Set up Home Manager
-  home.username = "moritz"; # Again, replace 'your-username'
-  home.homeDirectory = "/home/moritz";
+  # home.username = "moritz"; # Again, replace 'your-username'
+  # home.homeDirectory = "/home/moritz";
 
   # State version for Home Manager
   home.stateVersion = "25.05"; # Match your system.stateVersion or a stable one
