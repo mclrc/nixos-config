@@ -43,6 +43,7 @@
         # Modules are where you define your system settings
         modules = [
           # Import Home Manager's NixOS module
+          ./configuration.nix
           home-manager.nixosModules.default
           {
             home-manager.useUserPackages = true;
