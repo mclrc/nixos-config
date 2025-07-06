@@ -54,7 +54,6 @@
     isNormalUser = true;
     description = "Moritz";
     extraGroups = [ "networkmanager" "wheel" ];
-    group = "moritz";
     packages = with pkgs; [];
   };
 
