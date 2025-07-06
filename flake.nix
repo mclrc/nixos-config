@@ -43,7 +43,6 @@
         # Modules are where you define your system settings
         modules = [
           # Import your main system configuration
-          ./configuration.nix
           ./hyprland.nix
 
           # Import Hyprland's NixOS module

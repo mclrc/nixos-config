@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     # Terminal emulators
     alacritty
+    kitty
     # Wayland native applications
     waybar # Status bar
     wofi # Application launcher (or rofi-wayland, fuzzel, etc.)
@@ -36,42 +37,11 @@
     # Main Hyprland configuration (equivalent to hyprland.conf)
     # Define your binds, layouts, rules, etc. here
     # Start with a basic config and expand
-    extraConfig = ''
-      # See https://wiki.hyprland.org/Configuring/Variables/
-      # Monitor setup (example)
-      # monitor=,preferred,auto,1
-
-      # Some default variables for Hyprland
-      env = XCURSOR_SIZE,24
-      env = QT_QPA_PLATFORM,wayland
-      env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
-
-      # Execute on startup (e.g., set wallpaper, start agents)
-      exec-once = ${pkgs.swaybg}/bin/swaybg -i ~/wall.jpg # Set wallpaper (ensure file exists or remove)
-      exec-once = systemctl --user import-environment PATH # Import PATH from user environment
-      exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP # D-Bus
-      exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 # Polkit agent
-      exec-once = ${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon --daemonize --components=pkcs11,secrets,ssh # Keyring
-
-      # Bindings (example)
-      bind = SUPER, Q, killactive,
-      bind = SUPER, M, exit,
-      bind = SUPER, E, exec, ${pkgs.nautilus}/bin/nautilus # File manager
-      bind = SUPER, T, exec, ${pkgs.wezterm}/bin/wezterm # Terminal
-      bind = SUPER, R, exec, ${pkgs.wofi}/bin/wofi --show drun # App launcher
-      bind = SUPER, L, exec, loginctl lock-session # Lock screen
-      bind = SUPER_SHIFT, S, exec, ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f - # Screenshot
-
-      # Window rules
-      windowrulev2 = noborder, class:^()$, title:^(kitty)$, floating:1 # Example rule
-
-      # ... Add more Hyprland config here ...
-    '';
   };
 
   # Set your default terminal emulator (Hyprland will pick this up for $TERMINAL)
   programs.alacritty.enable = true;
-  # programs.kitty.enable = true; # If using kitty
+  programs.kitty.enable = true; # If using kitty
 
   # Git config
   programs.git.enable = true;
