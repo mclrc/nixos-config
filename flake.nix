@@ -45,9 +45,6 @@
           # Import your main system configuration
           ./hyprland.nix
 
-          # Import Hyprland's NixOS module
-          hyprland.nixosModules.default
-
           # Import Home Manager's NixOS module
           home-manager.nixosModules.default
           {
