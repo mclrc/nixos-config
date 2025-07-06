@@ -6,7 +6,6 @@
   inputs = {
     # Nixpkgs: The main Nix packages collection
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # Use unstable for latest Hyprland
-    nixpkgs.config.allowUnfree = true;
 
     # Home Manager: For managing user-specific configurations (dotfiles, user programs)
     home-manager.url = "github:nix-community/home-manager";
@@ -34,7 +33,7 @@
       # Make nixpkgs accessible with the chosen system
       pkgs = import nixpkgs {
         inherit system;
-        # config.allowUnfree = true; # Allow proprietary software (e.g., Google Chrome, some drivers)
+        config.allowUnfree = true; # Allow proprietary software (e.g., Google Chrome, some drivers)
       };
     in {
       # Define your NixOS configuration(s) here

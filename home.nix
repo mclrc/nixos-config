@@ -24,7 +24,6 @@
     # firefox
     # File manager
     nautilus # or thunar, pcmanfm
-    fl
   ];
 
   # Hyprland configuration via Home Manager
