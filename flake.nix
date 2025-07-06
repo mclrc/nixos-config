@@ -44,6 +44,7 @@
         modules = [
           # Import your main system configuration
           ./configuration.nix
+          ./hyprland.nix
 
           # Import Hyprland's NixOS module
           hyprland.nixosModules.default
