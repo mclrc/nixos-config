@@ -63,6 +63,14 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
+    nvim
+  ];
+
+  fonts.packages = with pkgs; [
+    nerdfonts.FiraCode
+    nerdfonts.JetBrainsMono
+    nerdonts.Hack
+    nerdfonts.Inconsolata
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
