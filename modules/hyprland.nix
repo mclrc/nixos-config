@@ -44,6 +44,10 @@
         layout = "dwindle";
       };
 
+      debug = {
+        disable_logs = false;
+      };
+
       decoration = {
         rounding = 6;
         # "rounding_power" is not a valid option, so it's omitted.
