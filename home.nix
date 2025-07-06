@@ -48,6 +48,7 @@
   programs.git.enable = true;
   programs.git.userName = "mclrc";
   programs.git.userEmail = "moritzamando@proton.me";
+  programs.git.coreEditor = "vim"
 
   # Enable zsh if you want to use it
   # programs.zsh.enable = true;

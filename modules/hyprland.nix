@@ -123,11 +123,6 @@
         follow_mouse = 1;
         sensitivity = 0;
         touchpad.natural_scroll = false;
-
-        # Per-device config is nested under the device name
-        device."epic-mouse-v1" = {
-          sensitivity = -0.5;
-        };
       };
 
       gestures = {

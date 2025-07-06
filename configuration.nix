@@ -65,6 +65,8 @@
     git
     neovim
     killall
+    gcc
+    unzip
   ];
 
   fonts.packages = with pkgs; [
