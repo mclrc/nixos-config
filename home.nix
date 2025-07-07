@@ -11,6 +11,8 @@
     ./modules/yacoub.nix
   ];
 
+  services.gnome-keyring.enable = true;
+
   home.packages = with pkgs; [
     kitty
     wl-clipboard
@@ -22,6 +24,7 @@
     nodejs
     libnotify
     lazygit
+    git-credential-manager
   ];
 
   programs.lazygit = {
@@ -55,11 +58,20 @@
     userEmail = "moritzamando@proton.me";
 
     extraConfig = {
+      credential = {
+        helper = "gnome-keyring";
+      };
       core = {
         editor = "vim";
       };
-      credential.helper = "gnome-keyring";
     };
+  };
+
+  programs.gh = {
+    enable = true;
+    gitCredentialHelper = {
+        enable = true;
+      };
   };
 
   programs.fish = {
@@ -70,6 +82,10 @@
     shellAliases = {
       gemini = "npx @google/gemini-cli";
     };
+  };
+
+  programs.ssh = {
+    enable = true;
   };
 
   home.pointerCursor = {
