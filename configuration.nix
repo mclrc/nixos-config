@@ -5,6 +5,9 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./modules/keyd.nix
+  ];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -66,6 +69,7 @@
     go
     ripgrep
     gnome-keyring
+    keyd
 
     fishPlugins.done
     fishPlugins.fzf-fish
