@@ -81,6 +81,8 @@
     grc
 
     just
+    clang
+    clang-tools
   ];
 
   fonts.packages = with pkgs; [

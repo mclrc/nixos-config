@@ -1,7 +1,15 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ neovim ];
+  programs.neovim = {
+    enable = true;
+    withPython3 = true;
+    extraPython3Packages = (ps: with ps; [
+      pynvim
+      flake8
+      pip
+    ]);
+  };
 
   xdg.configFile."nvim" = {
     source = ./neovim-config;
