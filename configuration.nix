@@ -78,6 +78,8 @@
     fzf
     fishPlugins.grc
     grc
+
+    just
   ];
 
   fonts.packages = with pkgs; [
