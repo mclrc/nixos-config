@@ -23,30 +23,34 @@
     # File manager
     nautilus # or thunar, pcmanfm
     firefox
+    zsh-syntax-highlighting
   ];
 
   # Git config
-  programs.git.enable = true;
-  programs.git.userName = "mclrc";
-  programs.git.userEmail = "moritzamando@proton.me";
+  programs.git = {
+    enable = true;
+    userName = "mclrc";
+    userEmail = "moritzamando@proton.me";
 
-  programs.git.extraConfig = {
-    core = {
-      editor = "vim";
+    extraConfig = {
+      core = {
+        editor = "vim";
+      };
     };
   };
 
+
   # Enable zsh if you want to use it
-  # programs.zsh.enable = true;
-  # programs.zsh.enableCompletion = true;
-  # programs.zsh.ohMyZsh.enable = true;
-  # programs.zsh.ohMyZsh.plugins = [ "git" "history" ];
-  # programs.zsh.ohMyZsh.customPlugins = [
-  #   {
-  #     name = "zsh-syntax-highlighting";
-  #     src = "${pkgs.zsh-syntax-highlighting}/share/zsh/site-functions";
-  #   }
-  # ];
+  programs.zsh.enable = true;
+  programs.zsh.enableCompletion = true;
+  programs.zsh.ohMyZsh.enable = true;
+  programs.zsh.ohMyZsh.plugins = [ "git" "history" ];
+  programs.zsh.ohMyZsh.customPlugins = [
+    {
+      name = "zsh-syntax-highlighting";
+      src = "${pkgs.zsh-syntax-highlighting}/share/zsh/site-functions";
+    }
+  ];
 
   # Other dotfiles via Home Manager
   # programs.neovim.enable = true;

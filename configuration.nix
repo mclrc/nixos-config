@@ -67,6 +67,9 @@
     killall
     gcc
     unzip
+    rust-bin.nightly.default
+    rust-bin.nightly.rust-analyzer
+    rustup
   ];
 
   fonts.packages = with pkgs; [
