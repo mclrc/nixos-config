@@ -6,6 +6,18 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    waybar # Status bar
+    wofi # Application launcher (or rofi-wayland, fuzzel, etc.)
+    swaybg # Wallpaper setter
+    alacritty
+    pipewire
+  ];
+
+  # Set your default terminal emulator (Hyprland will pick this up for $TERMINAL)
+  programs.alacritty.enable = true;
+  programs.kitty.enable = true; # If using kitty
+
   # Enable the Hyprland module
   wayland.windowManager.hyprland.enable = true;
 
@@ -20,13 +32,13 @@
     in
     {
       # Monitors
-      monitor = ",preferred,auto,auto";
+      monitor = ",preferred,auto,0.5";
 
       # Autostart
       exec-once = [
         "${terminal}"
         "nm-applet &"
-        "waybar & hyprpaper &"
+        "pipewire & waybar & hyprpaper &"
       ];
 
       # Environment Variables
@@ -122,11 +134,11 @@
         kb_layout = "us";
         follow_mouse = 1;
         sensitivity = 0;
-        touchpad.natural_scroll = false;
+        touchpad.natural_scroll = true;
       };
 
       gestures = {
-        workspace_swipe = false;
+        workspace_swipe = true;
       };
 
       # Keybindings
