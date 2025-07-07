@@ -5,17 +5,11 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware/hardware-configuration.nix
-    ];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-#  boot.initrd.luks.devices."luks-ee72fe22-a0c4-476c-950c-64d7d04ec2f0".device = "/dev/disk/by-uuid/ee72fe22-a0c4-476c-950c-64d7d04ec2f0";
-  boot.initrd.luks.devices."luks-50e14a82-8f16-4905-812c-3a1e4d697eaa".device = "/dev/disk/by-uuid/50e14a82-8f16-4905-812c-3a1e4d697eaa";
   networking.hostName = "tpe14"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
