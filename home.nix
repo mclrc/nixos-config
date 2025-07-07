@@ -8,7 +8,13 @@
   # State version for Home Manager
   home.stateVersion = "25.05"; # Match your system.stateVersion or a stable one
 
-  imports = [ ./modules/hyprland.nix ./modules/alacritty.nix ./modules/waybar/waybar.nix ./modules/neovim/neovim.nix ];
+  imports = [
+    ./modules/hyprland.nix
+    ./modules/alacritty.nix
+    ./modules/waybar/waybar.nix
+    ./modules/neovim/neovim.nix
+    ./modules/yacoub.nix
+  ];
 
   # User-specific packages
   home.packages = with pkgs; [
