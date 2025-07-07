@@ -12,6 +12,7 @@
     swaybg # Wallpaper setter
     alacritty
     pipewire
+    hyprcursor
   ];
 
   # Set your default terminal emulator (Hyprland will pick this up for $TERMINAL)
@@ -42,7 +43,7 @@
       ];
 
       # Environment Variables
-      env = [ "XCURSOR_SIZE,24" "HYPRCURSOR_SIZE,24" ];
+      # env = [ "XCURSOR_SIZE,16" "HYPRCURSOR_SIZE,16" "XCURSOR_THEME,hyprcursor" ];
 
       # Look and Feel
       general = {
@@ -201,6 +202,12 @@
         "${mod} SHIFT, J, movewindow, d"
         "${mod} SHIFT, K, movewindow, u"
         "${mod} SHIFT, L, movewindow, r"
+
+        # Resize windows with arrow keys
+        "${mod} SHIFT, left, resizeactive, -20 0"
+        "${mod} SHIFT, right, resizeactive, 20 0"
+        "${mod} SHIFT, up, resizeactive, 0 -20"
+        "${mod} SHIFT, down, resizeactive, 0 20"
 
         # Fullscreen
         "${mod}, f, fullscreen,"

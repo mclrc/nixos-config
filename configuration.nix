@@ -53,14 +53,14 @@
   users.users.moritz = {
     isNormalUser = true;
     description = "Moritz";
-    extraGroups = [ "networkmanager" "wheel" "video" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" "docker" ];
     packages = with pkgs; [];
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     git
     neovim
@@ -70,6 +70,7 @@
     rustup
     go
     ripgrep
+    gnome-keyring
 
     fishPlugins.done
     fishPlugins.fzf-fish
@@ -91,6 +92,15 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
+  virtualisation.docker = {
+      enable = true;
+      rootless = {
+          enable = true;
+          setSocketVariable = true;
+      };
+  };
+
+  services.gnome.gnome-keyring.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

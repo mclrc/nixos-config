@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Set up Home Manager
-  # home.username = "moritz"; # Again, replace 'your-username'
-  # home.homeDirectory = "/home/moritz";
-
-  # State version for Home Manager
   home.stateVersion = "25.05"; # Match your system.stateVersion or a stable one
 
   imports = [
@@ -16,24 +11,17 @@
     ./modules/yacoub.nix
   ];
 
-  # User-specific packages
   home.packages = with pkgs; [
-    # Terminal emulators
     kitty
-    # Wayland native applications
-    wl-clipboard # Wayland clipboard utilities
-    # General utilities
-    feh # Image viewer (works on XWayland)
-    # Web browser
-    # firefox
-    # File manager
-    nautilus # or thunar, pcmanfm
+    wl-clipboard
+    feh
+    nautilus
     firefox
-    asdf-vm
     gh
+    bibata-cursors
+    nodejs
   ];
 
-  # Git config
   programs.git = {
     enable = true;
     userName = "mclrc";
@@ -51,12 +39,15 @@
     interactiveShellInit = ''
       set fish_greeting
     '';
+    shellAliases = {
+      gemini = "npx @google/gemini-cli";
+    };
   };
 
-  # Other dotfiles via Home Manager
-  # programs.neovim.enable = true;
-  # programs.neovim.extraConfig = ''
-  #   set number
-  #   set tabstop=4
-  # '';
+  home.pointerCursor = {
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
+    gtk.enable = true;
+  };
 }
