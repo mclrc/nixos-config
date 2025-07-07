@@ -24,6 +24,7 @@
     nautilus # or thunar, pcmanfm
     firefox
     asdf-vm
+    gh
   ];
 
   # Git config
