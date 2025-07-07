@@ -67,9 +67,17 @@
     killall
     gcc
     unzip
-    rust-bin.nightly.default
-    rust-bin.nightly.rust-analyzer
     rustup
+    go
+    ripgrep
+
+    fishPlugins.done
+    fishPlugins.fzf-fish
+    fishPlugins.forgit
+    fishPlugins.hydro
+    fzf
+    fishPlugins.grc
+    grc
   ];
 
   fonts.packages = with pkgs; [
@@ -77,6 +85,10 @@
     pkgs.nerd-fonts.hack
     pkgs.nerd-fonts.inconsolata
   ];
+
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

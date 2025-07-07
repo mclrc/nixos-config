@@ -23,7 +23,7 @@
     # File manager
     nautilus # or thunar, pcmanfm
     firefox
-    zsh-syntax-highlighting
+    asdf-vm
   ];
 
   # Git config
@@ -39,18 +39,12 @@
     };
   };
 
-
-  # Enable zsh if you want to use it
-  programs.zsh.enable = true;
-  programs.zsh.enableCompletion = true;
-  programs.zsh.ohMyZsh.enable = true;
-  programs.zsh.ohMyZsh.plugins = [ "git" "history" ];
-  programs.zsh.ohMyZsh.customPlugins = [
-    {
-      name = "zsh-syntax-highlighting";
-      src = "${pkgs.zsh-syntax-highlighting}/share/zsh/site-functions";
-    }
-  ];
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting
+    '';
+  };
 
   # Other dotfiles via Home Manager
   # programs.neovim.enable = true;
