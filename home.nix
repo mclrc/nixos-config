@@ -25,6 +25,7 @@
     libnotify
     lazygit
     git-credential-manager
+    zoxide
   ];
 
   programs.lazygit = {
@@ -86,6 +87,11 @@
 
   programs.ssh = {
     enable = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
   };
 
   home.pointerCursor = {
