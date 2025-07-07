@@ -58,6 +58,7 @@
       core = {
         editor = "vim";
       };
+      credential.helper = "gnome-keyring";
     };
   };
 
