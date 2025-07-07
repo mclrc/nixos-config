@@ -109,8 +109,13 @@
 
   # List services that you want to enable:
 
+  services.udev.extraRules = ''
+    ${builtins.readFile ./udev-rules/40-hilscher-misc.rules}
+    ${builtins.readFile ./udev-rules/40-hilscher-netx.rules}
+  '';
+
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  # services.opensh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

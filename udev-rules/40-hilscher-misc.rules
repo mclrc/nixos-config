@@ -1,0 +1,112 @@
+#-----------------------------------------------------------------------------
+#
+# misc USB rules
+# file version v6
+SUBSYSTEM!="usb", GOTO="misc_usb_rules_end"
+ENV{DEVTYPE}!="usb_device", GOTO="misc_usb_rules_end"
+
+#EVAL BOARDS
+#-----------
+
+# NXHX 90-JTAG
+ACTION=="add" \
+, ATTRS{idVendor}=="1939" \
+, ATTRS{idProduct}=="002c" \
+, MODE="664", GROUP="plugdev" \
+, RUN+="/sbin/modprobe ftdi-sio" \
+, RUN+="/bin/sh -c 'echo 1939 002c > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"
+
+# NXHX90-MC  (former DRIVE)
+ACTION=="add" \
+, ATTRS{idVendor}=="1939" \
+, ATTRS{idProduct}=="0031" \
+, MODE="664", GROUP="plugdev" \
+, RUN+="/sbin/modprobe ftdi-sio" \
+, RUN+="/bin/sh -c 'echo 1939 0031 > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"
+
+# NXHX netrapid 90
+ACTION=="add" \
+, ATTRS{idVendor}=="1939" \
+, ATTRS{idProduct}=="0029" \
+, MODE="664", GROUP="plugdev" \
+, RUN+="/sbin/modprobe ftdi-sio" \
+, RUN+="/bin/sh -c 'echo 1939 0029 > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"
+
+# NXEB 90-SPE
+ACTION=="add" \
+, ATTRS{idVendor}=="1939" \
+, ATTRS{idProduct}=="0032" \
+, MODE="664", GROUP="plugdev" \
+, RUN+="/sbin/modprobe ftdi-sio" \
+, RUN+="/bin/sh -c 'echo 1939 0032 > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"
+
+# NSHIELD 90
+ACTION=="add" \
+, ATTRS{idVendor}=="1939" \
+, ATTRS{idProduct}=="0034" \
+, MODE="664", GROUP="plugdev" \
+, RUN+="/sbin/modprobe ftdi-sio" \
+, RUN+="/bin/sh -c 'echo 1939 0034 > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"
+
+# NXEB28_PCIe
+ACTION=="add" \
+, ATTRS{idVendor}=="1939" \
+, ATTRS{idProduct}=="0033" \
+, MODE="664", GROUP="plugdev" \
+, RUN+="/sbin/modprobe ftdi-sio" \
+, RUN+="/bin/sh -c 'echo 1939 0033 > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"
+
+
+
+
+# NXHX USB-JTAG
+ATTRS{idVendor}=="0640", ATTRS{idProduct}=="0028", MODE="664", GROUP="plugdev"
+
+
+#ACCESSORIES
+#-----------
+# NXJTAG USB
+ATTRS{idVendor}=="1939", ATTRS{idProduct}=="0023", MODE="664", GROUP="plugdev"
+
+# NXJTAG-4000-USB
+ACTION=="add" \
+, ATTRS{idVendor}=="1939" \
+, ATTRS{idProduct}=="0301" \
+, MODE="664", GROUP="plugdev" \
+, RUN+="/sbin/modprobe ftdi-sio" \
+, RUN+="/bin/sh -c 'echo 1939 0301 > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"
+
+# Olimex OpenOCD JTAG ARM-USB-TINY-H
+ATTRS{idVendor}=="15ba", ATTRS{idProduct}=="002a", MODE="664", GROUP="plugdev"
+
+# Amontec JTAGkey
+ATTRS{idVendor}=="0403", ATTRS{idProduct}=="cff8", MODE="664", GROUP="plugdev"
+
+# JLink
+ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", MODE="664", GROUP="plugdev"
+ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0105", MODE="664", GROUP="plugdev"
+ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1020", MODE="664", GROUP="plugdev"
+
+
+
+LABEL="misc_usb_rules_end"
+
+# changelog for this file
+# v6 add entry for J-Link v12 (VID 0x1336 PID 0x1020)
+#
+# v5 add entries for NXEB 90-SPE, netSHIELD 90, NXEB 28-PCIe
+#                       Olimex JTAG ARM-USB-Tiny-H
+#                       Amontec JTAGkey 
+#                       JLink with PID 0x0101, 0x0105
+#
+#       rename NXHX90-DRIVE to NXHX90-MC
+#       apply FTDI-SIO to NXHX4000-JTAG
+#
+# v4 add entry for NXHX 90-DRIVE
+#
+# v3 split files into misc and misc-internal
+#
+# v2 split files into netx and misc
+#       added rules for netX90 and netrapid
+
+# generated Mon Mar 13 13:26:29 EDT 2023 by tag 0.0.5
