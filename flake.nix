@@ -24,12 +24,27 @@
         inherit system pkgs;
 
         modules = [
+          ./hardware/usb.nix
           ./configuration.nix
           home-manager.nixosModules.default
           {
             home-manager.useUserPackages = true;
             home-manager.useGlobalPkgs = true;
-            home-manager.users.moritz = import ./home.nix;
+            home-manager.users.mclrc = import ./home.nix;
+          }
+        ];
+      };
+      nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
+        inherit system pkgs;
+
+        modules = [
+          ./hardware/thinkpad.nix
+          ./configuration.nix
+          home-manager.nixosModules.default
+          {
+            home-manager.useUserPackages = true;
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.mclrc = import ./home.nix;
           }
         ];
       };
