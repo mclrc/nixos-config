@@ -19,6 +19,7 @@
     };
 
   boot.initrd.luks.devices."luks-e77ee270-bf49-4dc2-8646-4341edd9c23a".device = "/dev/disk/by-uuid/e77ee270-bf49-4dc2-8646-4341edd9c23a";
+  boot.initrd.luks.devices."luks-50e14a82-8f16-4905-812c-3a1e4d697eaa".device = "/dev/disk/by-uuid/50e14a82-8f16-4905-812c-3a1e4d697eaa";
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/5658-629C";
@@ -40,4 +41,13 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  hardware.graphics.enable = true;
+
+  services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+  };
 }

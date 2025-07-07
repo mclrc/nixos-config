@@ -38,7 +38,6 @@
         inherit system pkgs;
 
         modules = [
-          ./hardware/hardware-configuration.nix
           ./configuration.nix
           home-manager.nixosModules.default
           {
