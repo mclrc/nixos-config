@@ -9,6 +9,7 @@
     ./modules/waybar/waybar.nix
     ./modules/neovim/neovim.nix
     ./modules/yacoub.nix
+    ./modules/wofi.nix
   ];
 
   services.gnome-keyring.enable = true;
