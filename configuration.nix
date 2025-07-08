@@ -87,6 +87,7 @@
     clang-tools
 
     usbutils
+    htop
   ];
 
   fonts.packages = with pkgs; [

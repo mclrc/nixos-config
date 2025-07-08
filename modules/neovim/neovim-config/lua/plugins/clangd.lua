@@ -9,7 +9,7 @@ return {
     },
     config = function(_, opts)
       -- This line sets up the default LSP servers from LazyVim
-      require("lazyvim.plugins.lsp.init").setup.servers(opts.servers)
+      -- require("lazyvim.plugins.lsp.init").setup.servers(opts.servers)
 
       -- Directly set up clangd using lspconfig
       require("lspconfig").clangd.setup({
