@@ -29,7 +29,8 @@
       mod = "SUPER";
       terminal = "alacritty";
       fileManager = "dolphin";
-      menu = "wofi --show drun";
+      # menu = "wofi --show drun";
+      menu = "rofi -show drun -show window -show ssh";
     in
     {
       # Monitors
