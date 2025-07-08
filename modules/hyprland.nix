@@ -8,7 +8,7 @@
 {
   home.packages = with pkgs; [
     waybar # Status bar
-    wofi # Application launcher (or rofi-wayland, fuzzel, etc.)
+    rofi-wayland # Application launcher (or rofi-wayland, fuzzel, etc.)
     swaybg # Wallpaper setter
     alacritty
     pipewire

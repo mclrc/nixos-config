@@ -12,7 +12,7 @@ ENV{DEVTYPE}!="usb_device", GOTO="misc_usb_rules_end"
 ACTION=="add" \
 , ATTRS{idVendor}=="1939" \
 , ATTRS{idProduct}=="002c" \
-, MODE="664", GROUP="plugdev" \
+, MODE="666", GROUP="plugdev" \
 , RUN+="/sbin/modprobe ftdi-sio" \
 , RUN+="/bin/sh -c 'echo 1939 002c > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"
 
@@ -20,7 +20,7 @@ ACTION=="add" \
 ACTION=="add" \
 , ATTRS{idVendor}=="1939" \
 , ATTRS{idProduct}=="0031" \
-, MODE="664", GROUP="plugdev" \
+, MODE="666", GROUP="plugdev" \
 , RUN+="/sbin/modprobe ftdi-sio" \
 , RUN+="/bin/sh -c 'echo 1939 0031 > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"
 
@@ -28,7 +28,7 @@ ACTION=="add" \
 ACTION=="add" \
 , ATTRS{idVendor}=="1939" \
 , ATTRS{idProduct}=="0029" \
-, MODE="664", GROUP="plugdev" \
+, MODE="666", GROUP="plugdev" \
 , RUN+="/sbin/modprobe ftdi-sio" \
 , RUN+="/bin/sh -c 'echo 1939 0029 > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"
 
@@ -36,7 +36,7 @@ ACTION=="add" \
 ACTION=="add" \
 , ATTRS{idVendor}=="1939" \
 , ATTRS{idProduct}=="0032" \
-, MODE="664", GROUP="plugdev" \
+, MODE="666", GROUP="plugdev" \
 , RUN+="/sbin/modprobe ftdi-sio" \
 , RUN+="/bin/sh -c 'echo 1939 0032 > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"
 
@@ -44,7 +44,7 @@ ACTION=="add" \
 ACTION=="add" \
 , ATTRS{idVendor}=="1939" \
 , ATTRS{idProduct}=="0034" \
-, MODE="664", GROUP="plugdev" \
+, MODE="666", GROUP="plugdev" \
 , RUN+="/sbin/modprobe ftdi-sio" \
 , RUN+="/bin/sh -c 'echo 1939 0034 > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"
 
@@ -52,7 +52,7 @@ ACTION=="add" \
 ACTION=="add" \
 , ATTRS{idVendor}=="1939" \
 , ATTRS{idProduct}=="0033" \
-, MODE="664", GROUP="plugdev" \
+, MODE="666", GROUP="plugdev" \
 , RUN+="/sbin/modprobe ftdi-sio" \
 , RUN+="/bin/sh -c 'echo 1939 0033 > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"
 
@@ -60,32 +60,32 @@ ACTION=="add" \
 
 
 # NXHX USB-JTAG
-ATTRS{idVendor}=="0640", ATTRS{idProduct}=="0028", MODE="664", GROUP="plugdev"
+ATTRS{idVendor}=="0640", ATTRS{idProduct}=="0028", MODE="666", GROUP="plugdev"
 
 
 #ACCESSORIES
 #-----------
 # NXJTAG USB
-ATTRS{idVendor}=="1939", ATTRS{idProduct}=="0023", MODE="664", GROUP="plugdev"
+ATTRS{idVendor}=="1939", ATTRS{idProduct}=="0023", MODE="666", GROUP="plugdev"
 
 # NXJTAG-4000-USB
 ACTION=="add" \
 , ATTRS{idVendor}=="1939" \
 , ATTRS{idProduct}=="0301" \
-, MODE="664", GROUP="plugdev" \
+, MODE="666", GROUP="plugdev" \
 , RUN+="/sbin/modprobe ftdi-sio" \
 , RUN+="/bin/sh -c 'echo 1939 0301 > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"
 
 # Olimex OpenOCD JTAG ARM-USB-TINY-H
-ATTRS{idVendor}=="15ba", ATTRS{idProduct}=="002a", MODE="664", GROUP="plugdev"
+ATTRS{idVendor}=="15ba", ATTRS{idProduct}=="002a", MODE="666", GROUP="plugdev"
 
 # Amontec JTAGkey
-ATTRS{idVendor}=="0403", ATTRS{idProduct}=="cff8", MODE="664", GROUP="plugdev"
+ATTRS{idVendor}=="0403", ATTRS{idProduct}=="cff8", MODE="666", GROUP="plugdev"
 
 # JLink
-ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", MODE="664", GROUP="plugdev"
-ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0105", MODE="664", GROUP="plugdev"
-ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1020", MODE="664", GROUP="plugdev"
+ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", MODE="666", GROUP="plugdev"
+ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0105", MODE="666", GROUP="plugdev"
+ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1020", MODE="666", GROUP="plugdev"
 
 
 

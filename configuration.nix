@@ -48,11 +48,13 @@
     variant = "";
   };
 
+  users.groups.plugdev = {};
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mclrc = {
     isNormalUser = true;
     description = "Moritz";
-    extraGroups = [ "networkmanager" "wheel" "video" "input" "docker" "plugdev" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" "docker" "plugdev" "dialout" ];
     packages = with pkgs; [];
   };
 
@@ -83,6 +85,8 @@
     just
     clang
     clang-tools
+
+    usbutils
   ];
 
   fonts.packages = with pkgs; [
