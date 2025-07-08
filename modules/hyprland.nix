@@ -134,7 +134,7 @@
       input = {
         kb_layout = "us";
         follow_mouse = 1;
-        sensitivity = 0.5;
+        sensitivity = 1;
         accel_profile = "flat";
         touchpad.natural_scroll = true;
       };
@@ -215,6 +215,9 @@
 
         # Toggle split direction
         "${mod}, v, togglesplit,"
+
+        # Lock screen
+        "${mod}, Backspace, exec, swaylock -c 000000"
       ];
 
       # Mouse bindings

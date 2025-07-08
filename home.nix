@@ -27,6 +27,9 @@
     lazygit
     git-credential-manager
     zoxide
+    neofetch
+    swaylock
+    wdisplays
   ];
 
   programs.lazygit = {

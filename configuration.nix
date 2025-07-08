@@ -7,6 +7,7 @@
 {
   imports = [
     ./modules/keyd.nix
+    ./modules/udev/udev.nix
   ];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.
@@ -51,7 +52,7 @@
   users.users.mclrc = {
     isNormalUser = true;
     description = "Moritz";
-    extraGroups = [ "networkmanager" "wheel" "video" "input" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" "docker" "plugdev" ];
     packages = with pkgs; [];
   };
 
@@ -103,6 +104,12 @@
 
   services.gnome.gnome-keyring.enable = true;
 
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -112,11 +119,6 @@
   # };
 
   # List services that you want to enable:
-
-  services.udev.extraRules = ''
-    ${builtins.readFile ./udev-rules/40-hilscher-misc.rules}
-    ${builtins.readFile ./udev-rules/40-hilscher-netx.rules}
-  '';
 
   # Enable the OpenSSH daemon.
   # services.opensh.enable = true;
