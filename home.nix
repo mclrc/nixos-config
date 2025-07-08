@@ -10,6 +10,7 @@
     ./modules/neovim/neovim.nix
     ./modules/yacoub.nix
     ./modules/rofi/rofi.nix
+    ./modules/firefox.nix
   ];
 
   services.gnome-keyring.enable = true;
