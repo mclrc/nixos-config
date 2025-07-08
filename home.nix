@@ -20,7 +20,6 @@
     wl-clipboard
     feh
     nautilus
-    firefox
     gh
     bibata-cursors
     nodejs
@@ -31,6 +30,7 @@
     neofetch
     swaylock
     wdisplays
+    dconf
   ];
 
   programs.lazygit = {
@@ -103,7 +103,18 @@
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
     size = 24;
-    gtk.enable = true;
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.adwaita-icon-theme;
+    };
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
   };
 
   services.dunst = {

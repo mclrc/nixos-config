@@ -5,11 +5,45 @@
 { config, pkgs, ... }:
 
 {
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
   imports = [
     ./modules/keyd.nix
     ./modules/udev/udev.nix
   ];
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    git
+    neovim
+    killall
+    gcc
+    unzip
+    rustup
+    go
+    ripgrep
+    gnome-keyring
+    keyd
+
+    fishPlugins.done
+    fishPlugins.fzf-fish
+    fishPlugins.forgit
+    fishPlugins.hydro
+    fzf
+    fishPlugins.grc
+    grc
+
+    just
+    clang
+    clang-tools
+
+    usbutils
+    htop
+  ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -57,38 +91,6 @@
     extraGroups = [ "networkmanager" "wheel" "video" "input" "docker" "plugdev" "dialout" ];
     packages = with pkgs; [];
   };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-    neovim
-    killall
-    gcc
-    unzip
-    rustup
-    go
-    ripgrep
-    gnome-keyring
-    keyd
-
-    fishPlugins.done
-    fishPlugins.fzf-fish
-    fishPlugins.forgit
-    fishPlugins.hydro
-    fzf
-    fishPlugins.grc
-    grc
-
-    just
-    clang
-    clang-tools
-
-    usbutils
-    htop
-  ];
 
   fonts.packages = with pkgs; [
     pkgs.nerd-fonts.fira-code
