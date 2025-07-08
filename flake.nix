@@ -48,5 +48,19 @@
           }
         ];
       };
+      nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
+        inherit system pkgs;
+
+        modules = [
+          ./hardware/desktop.nix
+          ./configuration.nix
+          home-manager.nixosModules.default
+          {
+            home-manager.useUserPackages = true;
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.mclrc = import ./home.nix;
+          }
+        ];
+      };
     };
 }
