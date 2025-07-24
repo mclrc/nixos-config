@@ -9,5 +9,7 @@
        gcc-arm-embedded
        pulseview
        picocom
+       openocd
+       stlink
     ];
 }

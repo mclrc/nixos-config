@@ -36,10 +36,11 @@
     fishPlugins.grc
     grc
 
-    just
     clang
     clang-tools
+    glibc
 
+    just
     usbutils
     htop
   ];
@@ -91,6 +92,8 @@
     extraGroups = [ "networkmanager" "wheel" "video" "input" "docker" "plugdev" "dialout" ];
     packages = with pkgs; [];
   };
+
+  services.envfs.enable = true;
 
   fonts.packages = with pkgs; [
     pkgs.nerd-fonts.fira-code
