@@ -10,6 +10,7 @@
   imports = [
     ./modules/keyd.nix
     ./modules/udev/udev.nix
+    ./modules/virtualisation.nix
   ];
 
   # List packages installed in system profile. To search, run:
@@ -89,7 +90,7 @@
   users.users.mclrc = {
     isNormalUser = true;
     description = "Moritz";
-    extraGroups = [ "networkmanager" "wheel" "video" "input" "docker" "plugdev" "dialout" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" "docker" "plugdev" "dialout" "libvirtd" ];
     packages = with pkgs; [];
   };
 
