@@ -35,6 +35,7 @@
     xdg-utils
     vscode
     flameshot
+    fd
   ];
 
   programs.lazygit = {
