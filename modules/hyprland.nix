@@ -9,11 +9,13 @@
   home.packages = with pkgs; [
     waybar # Status bar
     rofi-wayland # Application launcher (or rofi-wayland, fuzzel, etc.)
-    swaybg # Wallpaper setter
+    hyprpaper # Wallpaper setter
     alacritty
     pipewire
     hyprcursor
   ];
+
+
 
   # Set your default terminal emulator (Hyprland will pick this up for $TERMINAL)
   programs.alacritty.enable = true;

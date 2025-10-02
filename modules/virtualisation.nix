@@ -25,5 +25,6 @@
   environment.systemPackages = with pkgs; [
     virt-manager
     qemu_full
+    virtio-win
   ];
 }

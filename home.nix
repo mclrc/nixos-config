@@ -11,6 +11,7 @@
     ./modules/yacoub.nix
     ./modules/rofi/rofi.nix
     ./modules/firefox.nix
+    ./modules/hyprpaper.nix
   ];
 
   services.gnome-keyring.enable = true;
@@ -36,6 +37,9 @@
     vscode
     flameshot
     fd
+    kingstvis
+    sublime-merge
+    hyprshot
   ];
 
   programs.lazygit = {
@@ -92,6 +96,7 @@
     '';
     shellAliases = {
       gemini = "npx @google/gemini-cli";
+      claude = "npx @anthropic-ai/claude-code";
     };
   };
 
