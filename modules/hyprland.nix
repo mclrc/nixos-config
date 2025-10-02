@@ -25,6 +25,11 @@
   wayland.windowManager.hyprland.enable = true;
 
   # The 'settings' attribute set is a direct translation of your hyprland.conf
+  home.file.".config/hypr/hyprpaper.conf".text = ''
+    preload = /home/mclrc/Images/botw.jpg
+    wallpaper = ,/home/mclrc/Images/botw.jpg
+  '';
+
   wayland.windowManager.hyprland.settings =
     let
       # Define variables for easy reuse, just like in your original config
@@ -42,7 +47,7 @@
       exec-once = [
         "${terminal}"
         "nm-applet &"
-        "pipewire & waybar & hyprpaper &"
+        "pipewire & waybar & hyprpaper -c ~/.config/hypr/hyprpaper.conf &"
       ];
 
       # Environment Variables

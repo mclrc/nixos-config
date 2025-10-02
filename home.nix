@@ -11,7 +11,6 @@
     ./modules/yacoub.nix
     ./modules/rofi/rofi.nix
     ./modules/firefox.nix
-    ./modules/hyprpaper.nix
   ];
 
   services.gnome-keyring.enable = true;
