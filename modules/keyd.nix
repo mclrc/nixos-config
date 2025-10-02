@@ -20,7 +20,6 @@
           s = C-s
 
           Return = C-Return
-          t = C-t
 
           [main]
           capslock = layer(vim)
