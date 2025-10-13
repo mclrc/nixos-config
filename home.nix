@@ -39,6 +39,7 @@
     kingstvis
     sublime-merge
     hyprshot
+    pipenv
   ];
 
   programs.lazygit = {

@@ -11,5 +11,6 @@
        picocom
        openocd
        stlink
+       saleae-logic
     ];
 }
