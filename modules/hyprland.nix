@@ -47,7 +47,7 @@
       exec-once = [
         "${terminal}"
         "nm-applet &"
-        "pipewire & waybar & hyprpaper -c ~/.config/hypr/hyprpaper.conf &"
+        "waybar & hyprpaper -c ~/.config/hypr/hyprpaper.conf &"
       ];
 
       # Environment Variables
@@ -140,7 +140,8 @@
 
       # Input
       input = {
-        kb_layout = "us";
+        kb_layout = "us,de";
+        kb_options = "grp:alt_shift_toggle";
         follow_mouse = 1;
         sensitivity = 1;
         accel_profile = "flat";

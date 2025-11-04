@@ -11,6 +11,7 @@
     ./modules/keyd.nix
     ./modules/udev/udev.nix
     ./modules/virtualisation.nix
+    ./modules/bsprak.nix
   ];
 
   # List packages installed in system profile. To search, run:
@@ -46,6 +47,8 @@
     htop
 
     lsof
+
+    nix-search-cli
   ];
 
   # Bootloader.
@@ -92,7 +95,7 @@
   users.users.mclrc = {
     isNormalUser = true;
     description = "Moritz";
-    extraGroups = [ "networkmanager" "wheel" "video" "input" "docker" "plugdev" "dialout" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" "docker" "plugdev" "dialout" "libvirtd" "audio" ];
     packages = with pkgs; [];
   };
 

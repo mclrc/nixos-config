@@ -39,6 +39,7 @@
     sublime-merge
     hyprshot
     pipenv
+    bun
   ];
 
   programs.lazygit = {
