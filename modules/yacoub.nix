@@ -12,5 +12,6 @@
        openocd
        stlink
        saleae-logic
+       kingstvis
     ];
 }

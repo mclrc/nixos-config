@@ -26,5 +26,11 @@
     virt-manager
     qemu_full
     virtio-win
+    quickemu
+    quickgui
+    spice
+    spice-gtk
+    spice-protocol
+    freerdp
   ];
 }

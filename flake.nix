@@ -9,6 +9,11 @@
 
     hyprland.url = "github:hyprland-community/hyprland-nix";
     hyprland.inputs.nixpkgs.follows = "nixpkgs"; # Hyprland should use our nixpkgs
+
+    winboat = {
+      url = "github:TibixDev/winboat";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, hyprland, ... }:
@@ -18,6 +23,7 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        config.allowInsecure = true;
       };
     in {
       nixosConfigurations.nixusb = nixpkgs.lib.nixosSystem {

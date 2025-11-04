@@ -36,7 +36,6 @@
     vscode
     flameshot
     fd
-    kingstvis
     sublime-merge
     hyprshot
     pipenv

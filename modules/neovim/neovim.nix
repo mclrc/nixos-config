@@ -9,6 +9,11 @@
       flake8
       pip
     ]);
+    extraPackages = with pkgs; [
+      clang-tools # for clang-format
+      typescript-language-server # for TypeScript LSP
+      vscode-langservers-extracted # for ESLint LSP
+    ];
   };
 
   xdg.configFile."nvim" = {

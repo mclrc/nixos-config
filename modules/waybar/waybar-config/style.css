@@ -75,19 +75,25 @@ window#waybar {
 
 
 #workspaces button {
-  background: transparent;
+  background: rgba(0, 0, 8, 0.3);
   font-family:
     SpaceMono Nerd Font,
     feather;
   font-weight: 900;
   font-size: 13pt;
-  color: #c0caf5;
+  color: #7a82a8;
   border:none;
   border-radius: 15px;
 }
 
+#workspaces button.visible {
+    background: #1a1b26;
+    color: #c0caf5;
+}
+
 #workspaces button.active {
-    background: #13131d; 
+    background: #2a2b3d;
+    color: #cdd6f4;
 }
 
 #workspaces button:hover {

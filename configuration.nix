@@ -44,6 +44,8 @@
     just
     usbutils
     htop
+
+    lsof
   ];
 
   # Bootloader.

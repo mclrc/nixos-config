@@ -1,4 +1,15 @@
 return {
+  -- Add tokyodark theme
+  { "tiagovla/tokyodark.nvim" },
+
+  -- Configure LazyVim to load tokyodark
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "tokyodark",
+    },
+  },
+
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
@@ -55,5 +66,20 @@ return {
   {
     "NoahTheDuke/vim-just",
     ft = { "just" },
+  },
+  -- Formatting with conform.nvim
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+        h = { "clang-format" },
+      },
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+    },
   },
 }
