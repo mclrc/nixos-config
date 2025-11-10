@@ -3,6 +3,10 @@
 {
   home.stateVersion = "25.05"; # Match your system.stateVersion or a stable one
 
+  home.sessionPath = [
+    "/home/mclrc/arm/bin"
+  ];
+
   imports = [
     ./modules/hyprland.nix
     ./modules/alacritty.nix
@@ -40,6 +44,7 @@
     hyprshot
     pipenv
     bun
+    obsidian
   ];
 
   programs.lazygit = {
