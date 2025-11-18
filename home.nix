@@ -107,6 +107,12 @@
 
   programs.ssh = {
     enable = true;
+    matchBlocks = {
+      "github-personal" = {
+        hostname = "github.com";
+        identityFile = "~/.ssh/id_mclrc_gh";
+      };
+    };
   };
 
   programs.zoxide = {
