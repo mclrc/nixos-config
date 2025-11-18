@@ -156,7 +156,7 @@
       bind = [
         "${mod}, return, exec, ${terminal}"
         "${mod}, Q, killactive,"
-        "${mod}, M, exit,"
+        "${mod}, M, movecurrentworkspacetomonitor, +1"
         "${mod}, E, exec, ${fileManager}"
         "${mod}, space, togglefloating,"
         "${mod}, D, exec, ${menu}"
