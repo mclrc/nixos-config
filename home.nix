@@ -5,6 +5,7 @@
 
   home.sessionPath = [
     "/home/mclrc/arm/bin"
+    "home/mclrc/.local/bin"
   ];
 
   imports = [
@@ -45,6 +46,7 @@
     pipenv
     bun
     obsidian
+    bear
   ];
 
   programs.lazygit = {
