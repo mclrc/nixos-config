@@ -11,7 +11,7 @@
        picocom
        openocd
        stlink
-       saleae-logic
+       saleae-logic-2
        kingstvis
     ];
 }

@@ -1,4 +1,16 @@
 return {
+  -- Configure telescope to include git submodules in file search
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      pickers = {
+        git_files = {
+          git_command = { "git", "ls-files", "--exclude-standard", "--cached", "--recurse-submodules" },
+        },
+      },
+    },
+  },
+
   -- Add tokyodark theme
   { "tiagovla/tokyodark.nvim" },
 

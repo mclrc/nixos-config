@@ -40,8 +40,16 @@
       menu = "rofi -show drun -show window -show ssh";
     in
     {
-      # Monitors
-      monitor = ",preferred,auto,1";
+      # Monitors - persistent arrangement
+      monitor = [
+        # External monitors (top row, side by side)
+        "DP-7,2560x1440@60,0x0,1"
+        "DP-8,2560x1440@60,2560x0,1"
+        # Laptop screen (centered below external monitors)
+        "eDP-1,1920x1200@60,1600x1440,1"
+        # Fallback for any other monitors
+        ",preferred,auto,1"
+      ];
 
       # Autostart
       exec-once = [

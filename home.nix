@@ -5,7 +5,7 @@
 
   home.sessionPath = [
     "/home/mclrc/arm/bin"
-    "home/mclrc/.local/bin"
+    "/home/mclrc/.local/bin"
   ];
 
   imports = [
@@ -47,6 +47,8 @@
     bun
     obsidian
     bear
+    tor-browser
+    signal-desktop
   ];
 
   programs.lazygit = {
