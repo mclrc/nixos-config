@@ -79,6 +79,21 @@ return {
     "NoahTheDuke/vim-just",
     ft = { "just" },
   },
+  -- Auto-close HTML/Vue tags
+  {
+    "windwp/nvim-ts-autotag",
+    event = "InsertEnter",
+    opts = {},
+  },
+
+  -- Treesitter: add vue grammar
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "vue", "css", "html" })
+    end,
+  },
+
   -- Formatting with conform.nvim
   {
     "stevearc/conform.nvim",
@@ -87,6 +102,15 @@ return {
         c = { "clang-format" },
         cpp = { "clang-format" },
         h = { "clang-format" },
+        vue = { "prettier" },
+        typescript = { "prettier" },
+        javascript = { "prettier" },
+        typescriptreact = { "prettier" },
+        javascriptreact = { "prettier" },
+        html = { "prettier" },
+        css = { "prettier" },
+        scss = { "prettier" },
+        json = { "prettier" },
       },
       format_on_save = {
         timeout_ms = 500,

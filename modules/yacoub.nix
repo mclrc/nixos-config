@@ -13,5 +13,9 @@
        stlink
        saleae-logic-2
        kingstvis
+       omnissa-horizon-client
+       uv
+       segger-jlink
+       segger-ozone
     ];
 }

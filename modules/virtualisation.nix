@@ -9,8 +9,6 @@
   virtualisation = {
     libvirtd = {
       enable = true;
-      # Enable OVMF for UEFI support in VMs.
-      qemu.ovmf.enable = true;
       # Enable swtpm for TPM 2.0 support in VMs.
       qemu.swtpm.enable = true;
       # Configure virtiofsd path
@@ -62,7 +60,7 @@
     spice
     spice-gtk
     spice-protocol
-    win-virtio
+
     swtpm
     virtiofsd
   ];

@@ -54,6 +54,22 @@ return {
           })
         end,
       })
+
+      -- Setup Vue language server (volar)
+      lspconfig.volar.setup({
+        filetypes = { "vue" },
+        init_options = {
+          vue = {
+            hybridMode = false,
+          },
+        },
+      })
+
+      -- Setup HTML and CSS language servers (from vscode-langservers-extracted)
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+      lspconfig.html.setup({ capabilities = capabilities, filetypes = { "html", "vue" } })
+      lspconfig.cssls.setup({ capabilities = capabilities })
     end,
   },
 }

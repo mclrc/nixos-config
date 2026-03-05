@@ -24,6 +24,11 @@
         inherit system;
         config.allowUnfree = true;
         config.allowInsecure = false;
+
+        config.permittedInsecurePackages = [
+          "segger-jlink-qt4-874"
+        ];
+        config.segger-jlink.acceptLicense = true;
       };
     in {
       nixosConfigurations.nixusb = nixpkgs.lib.nixosSystem {

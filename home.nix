@@ -4,7 +4,7 @@
   home.stateVersion = "25.05"; # Match your system.stateVersion or a stable one
 
   home.sessionPath = [
-    "/home/mclrc/arm/bin"
+    # "/home/mclrc/arm/bin"
     "/home/mclrc/.local/bin"
   ];
 
@@ -105,7 +105,12 @@
     '';
     shellAliases = {
       gemini = "npx @google/gemini-cli";
-      claude = "npx @anthropic-ai/claude-code";
+      nr = "npm run";
+      nrl = "npm run lint";
+      nrd = "npm run dev";
+      j = "just";
+      gs = "git status";
+      gl = "git log";
     };
   };
 

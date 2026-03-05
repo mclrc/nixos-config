@@ -12,7 +12,9 @@
     extraPackages = with pkgs; [
       clang-tools # for clang-format
       typescript-language-server # for TypeScript LSP
-      vscode-langservers-extracted # for ESLint LSP
+      vscode-langservers-extracted # for HTML/CSS/JSON/ESLint LSPs
+      vue-language-server # for Vue LSP (volar)
+      prettier # for formatting Vue/TS/JS/HTML/CSS
     ];
   };
 

@@ -50,6 +50,8 @@
 
     nix-search-cli
   ];
+  
+  environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -109,6 +111,8 @@
 
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
+
+  programs.nix-ld.enable = true;
 
   virtualisation.docker = {
       enable = true;

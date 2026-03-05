@@ -8,7 +8,7 @@
 {
   home.packages = with pkgs; [
     waybar # Status bar
-    rofi-wayland # Application launcher (or rofi-wayland, fuzzel, etc.)
+    rofi # Application launcher
     hyprpaper # Wallpaper setter
     alacritty
     pipewire
@@ -156,10 +156,6 @@
         touchpad.natural_scroll = true;
       };
 
-      gestures = {
-        workspace_swipe = true;
-      };
-
       # Keybindings
       bind = [
         "${mod}, return, exec, ${terminal}"
@@ -263,8 +259,8 @@
 
       # Window Rules
       windowrule = [
-        "suppressevent maximize, class:.*"
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        #"suppressevent maximize, class:.*"
+        #"nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
       ];
     };
 
