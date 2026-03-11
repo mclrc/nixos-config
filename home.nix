@@ -49,6 +49,8 @@
     bear
     tor-browser
     signal-desktop
+    pavucontrol
+    wireshark
   ];
 
   programs.lazygit = {

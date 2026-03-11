@@ -40,14 +40,14 @@
       menu = "rofi -show drun -show window -show ssh";
     in
     {
-      # Monitors - persistent arrangement
+      # Monitors - use desc: matching for persistence across port changes
       monitor = [
-        # External monitors (top row, side by side)
-        "DP-7,2560x1440@60,0x0,1"
-        "DP-8,2560x1440@60,2560x0,1"
+        # Lenovo T27hv-30 monitors (top row, side by side)
+        "desc:Lenovo Group Limited T27hv-30 VTV0A4NU,2560x1440@60,0x0,1"
+        "desc:Lenovo Group Limited T27hv-30 VTV0UEPU,2560x1440@60,2560x0,1"
         # Laptop screen (centered below external monitors)
         "eDP-1,1920x1200@60,1600x1440,1"
-        # Fallback for any other monitors
+        # Any other external monitor: auto-place at preferred resolution
         ",preferred,auto,1"
       ];
 
@@ -55,6 +55,7 @@
       exec-once = [
         "${terminal}"
         "nm-applet &"
+        "blueman-applet &"
         "waybar & hyprpaper -c ~/.config/hypr/hyprpaper.conf &"
       ];
 

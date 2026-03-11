@@ -1,75 +1,68 @@
 -- All LSP configurations for NixOS (without Mason)
+-- Uses LazyVim's opts.servers system so LazyVim's default config runs,
+-- which provides keymaps (K, gd, gr), diagnostics, and cmp capabilities.
 return {
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
         clangd = {},
-        ts_ls = {},
-        eslint = {},
-      },
-    },
-    config = function(_, opts)
-      local lspconfig = require("lspconfig")
-
-      -- Setup clangd
-      lspconfig.clangd.setup({
-        -- Add any specific clangd settings here if needed
-      })
-
-      -- Setup TypeScript language server
-      lspconfig.ts_ls.setup({
-        settings = {
-          typescript = {
-            inlayHints = {
-              includeInlayParameterNameHints = "all",
-              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-              includeInlayFunctionParameterTypeHints = true,
-              includeInlayVariableTypeHints = true,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayEnumMemberValueHints = true,
+        ts_ls = {
+          settings = {
+            typescript = {
+              inlayHints = {
+                includeInlayParameterNameHints = "all",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
             },
-          },
-          javascript = {
-            inlayHints = {
-              includeInlayParameterNameHints = "all",
-              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-              includeInlayFunctionParameterTypeHints = true,
-              includeInlayVariableTypeHints = true,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayEnumMemberValueHints = true,
+            javascript = {
+              inlayHints = {
+                includeInlayParameterNameHints = "all",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
             },
           },
         },
-      })
-
-      -- Setup ESLint language server
-      lspconfig.eslint.setup({
-        on_attach = function(client, bufnr)
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            command = "EslintFixAll",
+        eslint = {},
+        volar = {
+          filetypes = { "vue" },
+          init_options = {
+            vue = {
+              hybridMode = false,
+            },
+          },
+        },
+        html = {
+          filetypes = { "html", "vue" },
+        },
+        cssls = {},
+      },
+      -- ESLint: auto-fix on save
+      setup = {
+        eslint = function(_, opts)
+          vim.api.nvim_create_autocmd("LspAttach", {
+            callback = function(args)
+              local client = vim.lsp.get_client_by_id(args.data.client_id)
+              if client and client.name == "eslint" then
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                  buffer = args.buf,
+                  command = "EslintFixAll",
+                })
+              end
+            end,
           })
         end,
-      })
-
-      -- Setup Vue language server (volar)
-      lspconfig.volar.setup({
-        filetypes = { "vue" },
-        init_options = {
-          vue = {
-            hybridMode = false,
-          },
-        },
-      })
-
-      -- Setup HTML and CSS language servers (from vscode-langservers-extracted)
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
-      lspconfig.html.setup({ capabilities = capabilities, filetypes = { "html", "vue" } })
-      lspconfig.cssls.setup({ capabilities = capabilities })
-    end,
+      },
+    },
   },
 }

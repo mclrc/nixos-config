@@ -49,9 +49,14 @@
     lsof
 
     nix-search-cli
+
+    wineWowPackages.stable
+    winetricks
   ];
   
   environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
+
+  hardware.graphics.enable32Bit = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -66,6 +71,11 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -97,7 +107,7 @@
   users.users.mclrc = {
     isNormalUser = true;
     description = "Moritz";
-    extraGroups = [ "networkmanager" "wheel" "video" "input" "docker" "plugdev" "dialout" "libvirtd" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" "docker" "plugdev" "dialout" "libvirtd" "audio" "wireshark" ];
     packages = with pkgs; [];
   };
 
@@ -112,6 +122,8 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
+  programs.wireshark.enable = true;
+  
   programs.nix-ld.enable = true;
 
   virtualisation.docker = {
