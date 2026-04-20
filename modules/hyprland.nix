@@ -38,6 +38,9 @@
       fileManager = "dolphin";
       # menu = "wofi --show drun";
       menu = "rofi -show drun -show window -show ssh";
+      # movefocus skips floats; focuswindow {floating,tiled} jumps between layers (see Hyprland wiki).
+      toggleFocusFloatTiled = pkgs.lib.escapeShellArg
+        "if hyprctl -j activewindow | grep -qE '\"floating\"[[:space:]]*:[[:space:]]*true'; then hyprctl dispatch focuswindow tiled; else hyprctl dispatch focuswindow floating; fi";
     in
     {
       # Monitors - use desc: matching for persistence across port changes
@@ -163,18 +166,18 @@
         "${mod}, Q, killactive,"
         "${mod}, M, movecurrentworkspacetomonitor, +1"
         "${mod}, E, exec, ${fileManager}"
-        "${mod}, space, togglefloating,"
+        "${mod}, space, exec, sh -c ${toggleFocusFloatTiled}"
+        "${mod} SHIFT, space, togglefloating,"
         "${mod}, D, exec, ${menu}"
         "${mod}, P, pseudo,"
         # "${mod}, J, togglesplit,"
 
-        # Move focus with mainMod + arrow keys
+        # movefocus is layer-local (tiled↔tiled, float↔float); Super+Space crosses layers.
         "${mod}, left, movefocus, l"
         "${mod}, right, movefocus, r"
         "${mod}, up, movefocus, u"
         "${mod}, down, movefocus, d"
 
-        # Move focus with mainMod + hjkl keys
         "${mod}, h, movefocus, l"
         "${mod}, l, movefocus, r"
         "${mod}, k, movefocus, u"

@@ -18,7 +18,12 @@
     ./modules/firefox.nix
   ];
 
-  services.gnome-keyring.enable = true;
+  services.gnome-keyring = {
+    enable = true;
+    components = [ "pkcs11" "secrets" ];
+  };
+
+  services.ssh-agent.enable = true;
 
   home.packages = with pkgs; [
     kitty
@@ -51,6 +56,10 @@
     signal-desktop
     pavucontrol
     wireshark
+    qmk
+    vial
+    chromium
+    discord
   ];
 
   programs.lazygit = {
@@ -80,8 +89,8 @@
 
   programs.git = {
     enable = true;
-    userName = "mclrc";
-    userEmail = "moritzamando@proton.me";
+    userName = "mclrc-yacoub";
+    userEmail = "moritz.clerc@yacoub.de";
 
     extraConfig = {
       credential = {
@@ -89,6 +98,9 @@
       };
       core = {
         editor = "vim";
+      };
+      push = {
+        autoSetupRemote = true;
       };
     };
   };
@@ -113,17 +125,24 @@
       j = "just";
       gs = "git status";
       gl = "git log";
+      netnode-serial = "picocom --baud 115200 --imap lfcrlf --echo --flow h";
     };
   };
 
   programs.ssh = {
     enable = true;
+    addKeysToAgent = "yes";
     matchBlocks = {
       "github-personal" = {
         hostname = "github.com";
         identityFile = "~/.ssh/id_mclrc_gh";
       };
     };
+  };
+
+  programs.atuin = {
+    enable = true;
+    enableFishIntegration = true;
   };
 
   programs.zoxide = {

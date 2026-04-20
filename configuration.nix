@@ -56,7 +56,18 @@
   
   environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
+    config.hyprland.default = [ "hyprland" "gtk" ];
+  };
+
   hardware.graphics.enable32Bit = true;
+
+  hardware.keyboard.qmk.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
