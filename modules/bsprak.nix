@@ -24,7 +24,9 @@
       gcc
       gnumake
       cmake
-      (python313.withPackages (ps: with ps; [ zlib pip setuptools virtualenv sphinx ]))
+      (python313.withPackages (ps: with ps; [
+        zlib pip setuptools virtualenv sphinx
+      ]))
 
       ninja
       texinfo

@@ -37,7 +37,7 @@
     lazygit
     git-credential-manager
     zoxide
-    neofetch
+    fastfetch
     swaylock
     wdisplays
     dconf
@@ -60,6 +60,8 @@
     vial
     chromium
     discord
+    tcpdump
+    spotify
   ];
 
   programs.lazygit = {
@@ -127,6 +129,21 @@
       gl = "git log";
       netnode-serial = "picocom --baud 115200 --imap lfcrlf --echo --flow h";
     };
+    functions = {
+      ide = {
+        body = ''
+          set dir (zoxide query $argv[1])
+          if test -z "$dir"
+            echo "ide: no match for '$argv[1]'"
+            return 1
+          end
+          alacritty --working-directory $dir -e agent &; disown
+          alacritty --working-directory $dir &; disown
+          cd $dir
+          nvim .
+        '';
+      };
+    };
   };
 
   programs.ssh = {
@@ -135,7 +152,8 @@
     matchBlocks = {
       "github-personal" = {
         hostname = "github.com";
-        identityFile = "~/.ssh/id_mclrc_gh";
+        identityFile = "~/.ssh/github_personal";
+        identitiesOnly = true;
       };
     };
   };
