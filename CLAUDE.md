@@ -97,7 +97,23 @@ each host's evaluated `fileSystems."/"` device. `just which` shows the result,
    `.claude/skills/**`, and `.claude/settings.json`. If something here is
    outdated, contradicts the code, or a new rule genuinely needs adding, say so
    and ask whether to change it. Only edit them when the user says to.
-7. `warning: Git tree is dirty` is expected and harmless.
+7. **Commit at the very end of every change.** Once `just check` (or
+   `just check-all`) passes and you have reported the result, `git add` the
+   touched files and commit them — don't leave the tree dirty for the human to
+   tidy up. The subject line is one concise sentence saying what changed. Where
+   the *why* is not obvious from the diff, put it in a `Reason:` trailer rather
+   than padding the subject:
+
+   ```
+   Point Cursor at gnome-keyring's libsecret backend
+
+   Reason: Electron picks its secret store from XDG_CURRENT_DESKTOP, which is
+   "Hyprland", so it detected no keyring and fell back to plaintext.
+   ```
+
+   Commit only; never `git push`, and never commit a config that does not
+   evaluate.
+8. `warning: Git tree is dirty` is expected and harmless.
 
 ## Notes
 

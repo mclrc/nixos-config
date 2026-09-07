@@ -37,7 +37,13 @@
     swaylock
     wdisplays
     dconf
-    code-cursor
+    # Electron picks its secret-storage backend from XDG_CURRENT_DESKTOP, which
+    # is "Hyprland" here, so it finds neither GNOME nor KDE, falls back to
+    # plaintext and warns that no OS keyring could be found. gnome-keyring does
+    # serve org.freedesktop.secrets (services.gnome.gnome-keyring in
+    # configuration.nix) — just name the backend. commandLineArgs appends the
+    # flag inside the launcher script, so it applies to cursor.desktop too.
+    (code-cursor.override { commandLineArgs = "--password-store=gnome-libsecret"; })
     xdg-utils
     vscode
     flameshot
@@ -62,7 +68,7 @@
     tokei
     pdfpc
 
-    # Referenced by the hyprland binds / waybar; see modules/hyprland.nix.
+    # Referenced by the hyprland binds / waybar; see modules/hyprland/hyprland.nix.
     brightnessctl
     playerctl
     networkmanagerapplet
