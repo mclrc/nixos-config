@@ -46,6 +46,20 @@ return {
           filetypes = { "html", "vue" },
         },
         cssls = {},
+        rust_analyzer = {
+          settings = {
+            ["rust-analyzer"] = {
+              inlayHints = {
+                bindingModeHints = { enable = true },
+                chainingHints = { enable = true },
+                closureReturnTypeHints = { enable = "always" },
+                parameterHints = { enable = true },
+                typeHints = { enable = true },
+              },
+              checkOnSave = { command = "clippy" },
+            },
+          },
+        },
       },
       -- ESLint: auto-fix on save
       setup = {

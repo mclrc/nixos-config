@@ -4,6 +4,7 @@
   programs.neovim = {
     enable = true;
     withPython3 = true;
+    withRuby = false;
     extraPython3Packages = (ps: with ps; [
       pynvim
       flake8
@@ -15,6 +16,8 @@
       vscode-langservers-extracted # for HTML/CSS/JSON/ESLint LSPs
       vue-language-server # for Vue LSP (volar)
       prettier # for formatting Vue/TS/JS/HTML/CSS
+      rust-analyzer # for Rust LSP
+      cargo # needed by rust-analyzer for project info
     ];
   };
 

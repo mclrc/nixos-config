@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(just --list)",
+      "Bash(just which)",
+      "Bash(just hosts)",
+      "Bash(just check)",
+      "Bash(just check-all)",
+      "Bash(just build)",
+      "Bash(just diff)",
+      "Bash(just clean)",
+      "Bash(just has:*)",
+      "Bash(just search:*)",
+      "Bash(just opt:*)",
+      "Bash(nixos-rebuild dry-build:*)",
+      "Bash(nixos-rebuild build:*)",
+      "Bash(nix eval:*)",
+      "Bash(nix search:*)",
+      "Bash(nix-search:*)",
+      "Bash(nix flake metadata:*)",
+      "Bash(nix store diff-closures:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git add:*)",
+      "Bash(git ls-files:*)"
+    ],
+    "deny": [
+      "Bash(sudo nixos-rebuild:*)",
+      "Bash(sudo nix-collect-garbage:*)",
+      "Bash(nixos-rebuild switch:*)",
+      "Bash(nixos-rebuild test:*)",
+      "Bash(nixos-rebuild boot:*)",
+      "Bash(just switch:*)",
+      "Bash(just try:*)",
+      "Bash(just boot:*)",
+      "Bash(just rollback:*)",
+      "Bash(just gc:*)"
+    ]
+  }
+}

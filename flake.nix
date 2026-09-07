@@ -6,72 +6,47 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Ensure Home Manager uses the same nixpkgs as us
-
-    hyprland.url = "github:hyprland-community/hyprland-nix";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs"; # Hyprland should use our nixpkgs
-
-    /* winboat = {
-      url = "github:TibixDev/winboat";
-      inputs.nixpkgs.follows = "nixpkgs";
-    }; */
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, ... }:
+  outputs = { nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        config.allowInsecure = false;
 
         config.permittedInsecurePackages = [
-          "segger-jlink-qt4-874"
+          "segger-jlink-qt4-952"
         ];
         config.segger-jlink.acceptLicense = true;
       };
+
+      # One host = its hardware file + the shared config + home-manager.
+      # `name` is both the nixosConfigurations attribute and networking.hostName;
+      # the justfile relies on those two matching. `hardware` names the file in
+      # hardware/ and defaults to `name` -- nixusb is the one host where they differ.
+      mkHost = { name, hardware ? name }: nixpkgs.lib.nixosSystem {
+        inherit system pkgs;
+
+        modules = [
+          ./hardware/${hardware}.nix
+          ./configuration.nix
+          home-manager.nixosModules.default
+          {
+            networking.hostName = name;
+
+            home-manager.useUserPackages = true;
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.mclrc = import ./home.nix;
+          }
+        ];
+      };
     in {
-      nixosConfigurations.nixusb = nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
-
-        modules = [
-          ./hardware/usb.nix
-          ./configuration.nix
-          home-manager.nixosModules.default
-          {
-            home-manager.useUserPackages = true;
-            home-manager.useGlobalPkgs = true;
-            home-manager.users.mclrc = import ./home.nix;
-          }
-        ];
-      };
-      nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
-
-        modules = [
-          ./hardware/thinkpad.nix
-          ./configuration.nix
-          home-manager.nixosModules.default
-          {
-            home-manager.useUserPackages = true;
-            home-manager.useGlobalPkgs = true;
-            home-manager.users.mclrc = import ./home.nix;
-          }
-        ];
-      };
-      nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
-
-        modules = [
-          ./hardware/desktop.nix
-          ./configuration.nix
-          home-manager.nixosModules.default
-          {
-            home-manager.useUserPackages = true;
-            home-manager.useGlobalPkgs = true;
-            home-manager.users.mclrc = import ./home.nix;
-          }
-        ];
+      nixosConfigurations = {
+        thinkpad = mkHost { name = "thinkpad"; };
+        desktop = mkHost { name = "desktop"; };
+        nixusb = mkHost { name = "nixusb"; hardware = "usb"; };
       };
     };
 }

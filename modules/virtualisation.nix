@@ -1,20 +1,21 @@
 { config, pkgs, ... }:
 
 {
-  # Enable KVM by loading the appropriate kernel module.
-  # Use "kvm-amd" if you have an AMD processor.
-  boot.kernelModules = [ "kvm-intel" ];
+  # The KVM kernel module is per-CPU-vendor and is declared in each
+  # hardware/<host>.nix (kvm-intel / kvm-amd) -- never assume it here.
 
   # Enable the libvirtd service to manage virtual machines.
   virtualisation = {
     libvirtd = {
       enable = true;
-      # Enable swtpm for TPM 2.0 support in VMs.
-      qemu.swtpm.enable = true;
-      # Configure virtiofsd path
-      qemuVerbatimConfig = ''
-        virtiofsd_path = "/run/current-system/sw/bin/virtiofsd"
-      '';
+      qemu = {
+        # Enable swtpm for TPM 2.0 support in VMs.
+        swtpm.enable = true;
+        # Configure virtiofsd path
+        verbatimConfig = ''
+          virtiofsd_path = "/run/current-system/sw/bin/virtiofsd"
+        '';
+      };
     };
     # Enable SPICE for USB redirection.
     spiceUSBRedirection.enable = true;

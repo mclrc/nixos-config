@@ -4,18 +4,16 @@
   home.stateVersion = "25.05"; # Match your system.stateVersion or a stable one
 
   home.sessionPath = [
-    # "/home/mclrc/arm/bin"
     "/home/mclrc/.local/bin"
   ];
 
   imports = [
-    ./modules/hyprland.nix
+    ./modules/hyprland/hyprland.nix
     ./modules/alacritty.nix
     ./modules/waybar/waybar.nix
     ./modules/neovim/neovim.nix
     ./modules/yacoub.nix
     ./modules/rofi/rofi.nix
-    ./modules/firefox.nix
   ];
 
   services.gnome-keyring = {
@@ -26,17 +24,15 @@
   services.ssh-agent.enable = true;
 
   home.packages = with pkgs; [
-    kitty
+    # Deliberately no programs.firefox module; xdg.mimeApps below makes it the
+    # default browser.
+    firefox
     wl-clipboard
     feh
     nautilus
-    gh
-    bibata-cursors
     nodejs
     libnotify
-    lazygit
     git-credential-manager
-    zoxide
     fastfetch
     swaylock
     wdisplays
@@ -62,6 +58,17 @@
     discord
     tcpdump
     spotify
+    poppler-utils
+    tokei
+    pdfpc
+
+    # Referenced by the hyprland binds / waybar; see modules/hyprland.nix.
+    brightnessctl
+    playerctl
+    networkmanagerapplet
+
+    wineWow64Packages.stable
+    winetricks
   ];
 
   programs.lazygit = {
@@ -91,10 +98,12 @@
 
   programs.git = {
     enable = true;
-    userName = "mclrc-yacoub";
-    userEmail = "moritz.clerc@yacoub.de";
 
-    extraConfig = {
+    settings = {
+      user = {
+        name = "mclrc-yacoub";
+        email = "moritz.clerc@yacoub.de";
+      };
       credential = {
         helper = "gnome-keyring";
       };
@@ -143,17 +152,54 @@
           nvim .
         '';
       };
+      nixai = {
+        body = ''
+          # Jump to this NixOS config via zoxide and start Claude there.
+          # Optional argument is used as the initial prompt:
+          #   nixai "add ripgrep-all to my user packages"
+          # Leading-dash arguments are passed straight through: nixai -c
+          set -l dir (zoxide query nixos-config 2>/dev/null)
+          if test -z "$dir" -o ! -d "$dir"
+            set dir "$HOME/nixos-config"
+          end
+          if not test -d "$dir"
+            echo "nixai: no nixos-config directory found"
+            return 1
+          end
+          cd $dir
+          if test (count $argv) -eq 0
+            claude
+          else if string match -qr '^-' -- $argv[1]
+            claude $argv
+          else
+            claude "$argv"
+          end
+        '';
+      };
     };
   };
 
   programs.ssh = {
     enable = true;
-    addKeysToAgent = "yes";
-    matchBlocks = {
+
+    # Opt out of home-manager's implicit `Host *` block; the only value we
+    # actually want is set below. Home-manager emits "*" last, so the specific
+    # host blocks still win.
+    enableDefaultConfig = false;
+
+    settings = {
       "github-personal" = {
-        hostname = "github.com";
-        identityFile = "~/.ssh/github_personal";
-        identitiesOnly = true;
+        HostName = "github.com";
+        IdentityFile = "~/.ssh/github_personal";
+        IdentitiesOnly = true;
+      };
+      "cg-gitlab" = {
+        HostName = "gitlab.cg.tu-berlin.de";
+        IdentityFile = "~/.ssh/github_personal";
+        IdentitiesOnly = true;
+      };
+      "*" = {
+        AddKeysToAgent = "yes";
       };
     };
   };
@@ -169,6 +215,7 @@
   };
 
   home.pointerCursor = {
+    enable = true;
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
     size = 24;
@@ -180,6 +227,8 @@
       name = "Adwaita-dark";
       package = pkgs.adwaita-icon-theme;
     };
+    # GTK4 apps use libadwaita rather than theme directories, so no gtk4 theme.
+    gtk4.theme = null;
     iconTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
@@ -219,12 +268,18 @@
     };
   };
 
+  xdg.mimeApps.enable = true;
   xdg.mimeApps.defaultApplications = {
     "text/html" = "firefox.desktop";
     "x-scheme-handler/http" = "firefox.desktop";
     "x-scheme-handler/https" = "firefox.desktop";
     "x-scheme-handler/about" = "firefox.desktop";
     "x-scheme-handler/unknown" = "firefox.desktop";
+
+    # Carried over from the hand-written ~/.config/mimeapps.list this replaces.
+    "x-scheme-handler/sgnl" = "signal.desktop";
+    "x-scheme-handler/signalcaptcha" = "signal.desktop";
+    "x-scheme-handler/claude-cli" = "claude-code-url-handler.desktop";
   };
 }
 
