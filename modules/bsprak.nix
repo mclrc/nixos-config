@@ -66,6 +66,9 @@
       pixman
       expat
       ncurses5
+      # Prebuilt vendor binaries link libreadline.so.8 against the FHS paths
+      # (e.g. the Hilscher fdltool's lua5.4 in mvk-safety-futurewise).
+      readline
     ];
   };
 }
