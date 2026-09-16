@@ -152,7 +152,7 @@
             echo "ide: no match for '$argv[1]'"
             return 1
           end
-          alacritty --working-directory $dir -e agent &; disown
+          alacritty --working-directory $dir -e claude &; disown
           alacritty --working-directory $dir &; disown
           cd $dir
           nvim .
