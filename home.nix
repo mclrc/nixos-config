@@ -241,6 +241,10 @@
     };
   };
 
+  # GTK3 apps follow gtk.theme above, but GTK4/libadwaita apps ignore theme
+  # names entirely and instead read this dconf key to pick their dark variant.
+  dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+
   services.dunst = {
     enable = true;
     settings = {
